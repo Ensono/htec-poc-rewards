@@ -26,7 +26,6 @@ namespace HTEC.Engagement.Application.QueryHandlers
             var result = new Points()
             {
                 Id = points.Id,
-                TenantId = points.TenantId,
                 Name = points.Name,
                 Description = points.Description,
                 Enabled = points.Enabled,

@@ -34,7 +34,6 @@ namespace HTEC.Engagement.Application.CommandHandlers
             var newPoints = new Points(
                 id: id,
                 name: command.Name,
-                tenantId: command.TenantId,
                 description: command.Description,
                 enabled: command.Enabled,
                 balance: command.Balance

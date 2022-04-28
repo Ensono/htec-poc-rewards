@@ -16,7 +16,8 @@ namespace HTEC.Engagement.Application.CommandHandlers
 
         public override Task<bool> HandleCommandAsync(Points points, IssuePoints command)
         {
-            points.Issue(command.Points);
+            // Let the command handler raise an event to handle the issue points.
+            //points.Issue(command.Points);
 
             return Task.FromResult(true);
         }
@@ -24,7 +25,7 @@ namespace HTEC.Engagement.Application.CommandHandlers
         public override IEnumerable<IApplicationEvent> RaiseApplicationEvents(Points points, IssuePoints command)
         {
             return new IApplicationEvent[] {
-                new PointsIssuedEvent(command, command.PointsId)
+                new PointsIssuedEvent(command, command.PointsId, command.Points)
             };
         }
     }

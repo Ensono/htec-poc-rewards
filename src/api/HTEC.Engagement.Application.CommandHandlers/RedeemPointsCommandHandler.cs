@@ -16,7 +16,8 @@ namespace HTEC.Engagement.Application.CommandHandlers
 
         public override Task<bool> HandleCommandAsync(Points points, RedeemPoints command)
         {
-            points.Redeem(command.Points);
+            // Let the command handler raise an event to handle the redeem points.
+            //points.Redeem(command.Points);
 
             return Task.FromResult(true);
         }
@@ -24,7 +25,7 @@ namespace HTEC.Engagement.Application.CommandHandlers
         public override IEnumerable<IApplicationEvent> RaiseApplicationEvents(Points points, RedeemPoints command)
         {
             return new IApplicationEvent[] {
-                new PointsRedeemedEvent(command, command.PointsId)
+                new PointsRedeemedEvent(command, command.PointsId, command.Points)
             };
         }
     }

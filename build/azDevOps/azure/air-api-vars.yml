@@ -26,7 +26,7 @@ variables:
   - name: TaskctlVersion
     value: 1.4.2
   - name: StacksEnvfileVersion
-    value: 0.0.15
+    value: 0.0.16
   - name: pool_vm_image
     value: ubuntu-20.04
 

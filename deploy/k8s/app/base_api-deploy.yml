@@ -123,7 +123,7 @@ data:
           "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ],
           "Destructure": [],
           "Properties": {
-              "Application": "Rewards API"
+              "Application": "Reward API"
           }
       },
       "AllowedHosts": "*",

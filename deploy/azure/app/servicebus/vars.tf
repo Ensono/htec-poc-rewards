@@ -75,25 +75,25 @@ variable "func-asb-listener-name" {
 
 variable "sb_name" {
   type        = string
-  default     = "sb-rewards"
+  default     = "sb-reward"
   description = "Name of the service bus to create"
 }
 
 variable "sb_topic_name" {
   type        = string
-  default     = "sbt-rewards-events"
+  default     = "sbt-reward-events"
   description = "Name of the topic to create"
 }
 
 variable "sb_subscription_filtered_name" {
   type        = string
-  default     = "sbs-rewards-events-filtered"
+  default     = "sbs-reward-events-filtered"
   description = "Name of the Service Bus subscription, filtered, to create"
 }
 
 variable "sb_subscription_name" {
   type        = string
-  default     = "sbs-rewards-events"
+  default     = "sbs-reward-events"
   description = "Name of the Service Bus subscription to create"
 }
 

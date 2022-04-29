@@ -7,9 +7,9 @@
     }
   ],
   "info": {
-    "description": "This is an API to manage Rewards in the restaurants",
+    "description": "This is an API to manage Reward in the restaurants",
     "version": "v1",
-    "title": "Rewards API",
+    "title": "Reward API",
     "contact": {
       "email": "stacks@amido.com"
     },
@@ -20,8 +20,8 @@
   },
   "tags": [
     {
-      "name": "Rewards",
-      "description": "Rewards related operations"
+      "name": "Reward",
+      "description": "Reward related operations"
     },
     {
       "name": "Category",
@@ -33,19 +33,19 @@
     }
   ],
   "paths": {
-    "/rewards/": {
+    "/reward/": {
       "get": {
         "tags": [
-          "Rewards"
+          "Reward"
         ],
-        "summary": "Get or search a list of rewardss",
-        "operationId": "searchRewards",
-        "description": "By passing in the appropriate options, you can search for\navailable rewardss in the system\n",
+        "summary": "Get or search a list of rewards",
+        "operationId": "searchReward",
+        "description": "By passing in the appropriate options, you can search for\navailable rewards in the system\n",
         "parameters": [
           {
             "in": "query",
             "name": "search",
-            "description": "pass an optional search string for looking up rewardss",
+            "description": "pass an optional search string for looking up rewards",
             "required": false,
             "schema": {
               "type": "string"
@@ -94,11 +94,11 @@
       },
       "post": {
         "tags": [
-          "Rewards"
+          "Reward"
         ],
-        "summary": "Create a rewards",
-        "operationId": "addRewards",
-        "description": "Adds a rewards",
+        "summary": "Create a reward",
+        "operationId": "addReward",
+        "description": "Adds a reward",
         "security": [
           {
             "OpenID": [
@@ -124,30 +124,30 @@
           }
         },
         "requestBody": {
-          "description": "Rewards being added",
+          "description": "Reward being added",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateOrUpdateRewards"
+                "$ref": "#/components/schemas/CreateOrUpdateReward"
               }
             }
           }
         }
       }
     },
-    "/rewards/{id}": {
+    "/reward/{id}": {
       "get": {
         "tags": [
-          "Rewards"
+          "Reward"
         ],
-        "summary": "Get a rewards",
-        "operationId": "getRewards",
-        "description": "By passing the rewards id, you can get access to\navailable categories and items in the rewards\n",
+        "summary": "Get a reward",
+        "operationId": "getReward",
+        "description": "By passing the reward id, you can get access to\navailable categories and items in the reward\n",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -157,11 +157,11 @@
         ],
         "responses": {
           "200": {
-            "description": "Rewards",
+            "description": "Reward",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Rewards"
+                  "$ref": "#/components/schemas/Reward"
                 }
               }
             }
@@ -176,16 +176,16 @@
       },
       "put": {
         "tags": [
-          "Rewards"
+          "Reward"
         ],
-        "summary": "Update a rewards",
-        "operationId": "updateRewards",
-        "description": "Update a rewards with new information",
+        "summary": "Update a reward",
+        "operationId": "updateReward",
+        "description": "Update a reward with new information",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -218,11 +218,11 @@
           }
         },
         "requestBody": {
-          "description": "Rewards being updated",
+          "description": "Reward being updated",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateOrUpdateRewards"
+                "$ref": "#/components/schemas/CreateOrUpdateReward"
               }
             }
           }
@@ -230,16 +230,16 @@
       },
       "delete": {
         "tags": [
-          "Rewards"
+          "Reward"
         ],
-        "summary": "Removes a rewards with all its categories and items",
-        "operationId": "deleteRewards",
-        "description": "Remove a rewards from a restaurant",
+        "summary": "Removes a reward with all its categories and items",
+        "operationId": "deleteReward",
+        "description": "Remove a reward from a restaurant",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -273,19 +273,19 @@
         }
       }
     },
-    "/rewards/{id}/category/": {
+    "/reward/{id}/category/": {
       "post": {
         "tags": [
           "Category"
         ],
-        "summary": "Create a category in the rewards",
-        "operationId": "addRewardsCategory",
-        "description": "Adds a category to rewards",
+        "summary": "Create a category in the reward",
+        "operationId": "addRewardCategory",
+        "description": "Adds a category to reward",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -329,19 +329,19 @@
         }
       }
     },
-    "/rewards/{id}/category/{categoryId}": {
+    "/reward/{id}/category/{categoryId}": {
       "put": {
         "tags": [
           "Category"
         ],
-        "summary": "Update a category in the rewards",
-        "operationId": "updateRewardsCategory",
-        "description": "Update a category to rewards",
+        "summary": "Update a category in the reward",
+        "operationId": "updateRewardCategory",
+        "description": "Update a category to reward",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -398,14 +398,14 @@
         "tags": [
           "Category"
         ],
-        "summary": "Removes a category and its items from rewards",
+        "summary": "Removes a category and its items from reward",
         "operationId": "deleteCategory",
-        "description": "Removes a category and its items from rewards",
+        "description": "Removes a category and its items from reward",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -449,19 +449,19 @@
         }
       }
     },
-    "/rewards/{id}/category/{categoryId}/items/": {
+    "/reward/{id}/category/{categoryId}/items/": {
       "post": {
         "tags": [
           "Item"
         ],
-        "summary": "Create an item to a category in the rewards",
-        "operationId": "addRewardsItem",
-        "description": "Adds a new item to a category in the rewards",
+        "summary": "Create an item to a category in the reward",
+        "operationId": "addRewardItem",
+        "description": "Adds a new item to a category in the reward",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -508,26 +508,26 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateOrUpdateRewardsItem"
+                "$ref": "#/components/schemas/CreateOrUpdateRewardItem"
               }
             }
           }
         }
       }
     },
-    "/rewards/{id}/category/{categoryId}/items/{itemId}": {
+    "/reward/{id}/category/{categoryId}/items/{itemId}": {
       "put": {
         "tags": [
           "Item"
         ],
-        "summary": "Update an item in the rewards",
-        "operationId": "updateRewardsItem",
-        "description": "Update an  item in the rewards",
+        "summary": "Update an item in the reward",
+        "operationId": "updateRewardItem",
+        "description": "Update an  item in the reward",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "Id for rewards",
+            "description": "Id for reward",
             "required": true,
             "schema": {
               "type": "string",
@@ -584,7 +584,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateOrUpdateRewardsItem"
+                "$ref": "#/components/schemas/CreateOrUpdateRewardItem"
               }
             }
           }
@@ -594,14 +594,14 @@
         "tags": [
           "Item"
         ],
-        "summary": "Removes an item from rewards",
-        "operationId": "deleteRewardsItem",
-        "description": "Removes an item from rewards",
+        "summary": "Removes an item from reward",
+        "operationId": "deleteRewardItem",
+        "description": "Removes an item from reward",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "rewards id",
+            "description": "reward id",
             "required": true,
             "schema": {
               "type": "string",
@@ -689,7 +689,7 @@
           },
           "name": {
             "type": "string",
-            "example": "Lunch Rewards"
+            "example": "Lunch Reward"
           },
           "description": {
             "type": "string",
@@ -700,7 +700,7 @@
           }
         }
       },
-      "Rewards": {
+      "Reward": {
         "type": "object",
         "required": [
           "id",
@@ -716,7 +716,7 @@
           },
           "name": {
             "type": "string",
-            "example": "Lunch Rewards"
+            "example": "Lunch Reward"
           },
           "description": {
             "type": "string",
@@ -757,12 +757,12 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RewardsItem"
+              "$ref": "#/components/schemas/RewardItem"
             }
           }
         }
       },
-      "RewardsItem": {
+      "RewardItem": {
         "type": "object",
         "required": [
           "id",
@@ -794,7 +794,7 @@
           }
         }
       },
-      "CreateOrUpdateRewards": {
+      "CreateOrUpdateReward": {
         "type": "object",
         "required": [
           "name",
@@ -804,7 +804,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "example": "Lunch Rewards"
+            "example": "Lunch Reward"
           },
           "description": {
             "type": "string",
@@ -831,7 +831,7 @@
           }
         }
       },
-      "CreateOrUpdateRewardsItem": {
+      "CreateOrUpdateRewardItem": {
         "type": "object",
         "required": [
           "name",

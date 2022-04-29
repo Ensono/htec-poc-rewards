@@ -40,5 +40,5 @@ resource "azurerm_servicebus_subscription_rule" "sb_sub_2_rule" {
   subscription_name   = azurerm_servicebus_subscription.sb_sub_2.name
 
   filter_type = "SqlFilter"
-  sql_filter  = "enclosedmessagetype like '%RewardsCreatedEvent%'"
+  sql_filter  = "enclosedmessagetype like '%RewardCreatedEvent%'"
 }

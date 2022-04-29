@@ -25,6 +25,8 @@ variables:
   # Agent configuration
   - name: TaskctlVersion
     value: 1.4.2
+  - name: StacksEnvfileVersion
+    value: 0.0.13
   - name: pool_vm_image
     value: ubuntu-20.04
 

@@ -64,7 +64,7 @@ stages:
             displayName: "TaskCTL: Build"
             inputs:
               targetType: inline
-              script: taskctl bgworker
+              script: taskctl build
             env:
               # Azure
               ARM_TENANT_ID: "$(azure-tenant-id)"

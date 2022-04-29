@@ -115,7 +115,6 @@ tasks:
     context: powershell-dotnet
     description: Create container image for application
     command:
-      - get-content -path /app/envfile -raw
       - Write-Host "Build-DockerImage -Name {{ .imagename }} -buildargs "{{ .buildargs }}""
       - Build-DockerImage -Name {{ .imagename }} -buildargs "{{ .buildargs }}" # TODO: Temporarily disabling push -push
     variables:

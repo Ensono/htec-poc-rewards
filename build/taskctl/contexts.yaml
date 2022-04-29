@@ -68,4 +68,4 @@ contexts:
     quote: "'"
     env:
       DOTNET_ARGUMENTS: "-v q /p:CollectCoverage=true /p:CoverletOutputFormat=opencover"
-    before: envfile -e path,home
+    before: envfile -e path,home -d

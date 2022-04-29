@@ -14,7 +14,8 @@ using HTEC.Engagement.Domain;
 using HTEC.Engagement.Infrastructure.HealthChecks;
 using Amido.Stacks.Data.Documents.CosmosDB;
 using Amido.Stacks.Data.Documents.CosmosDB.Extensions;
-using Amido.Stacks.Messaging.Azure.ServiceBus.Extensions;
+using Amido.Stacks.Messaging.Azure.ServiceBus.Senders.Publishers;
+using Amido.Stacks.Messaging.Azure.ServiceBus.Configuration;
 
 namespace HTEC.Engagement.Infrastructure
 {
@@ -40,9 +41,9 @@ namespace HTEC.Engagement.Infrastructure
         {
             services.AddSecrets();
 
-            services.Configure<Amido.Stacks.Messaging.Azure.ServiceBus.Configuration.ServiceBusConfiguration>(context.Configuration.GetSection("ServiceBusConfiguration"));
+            services.Configure<ServiceBusConfiguration>(context.Configuration.GetSection("ServiceBusConfiguration"));
             services.AddServiceBus();
-            services.AddTransient<IApplicationEventPublisher, Amido.Stacks.Messaging.Azure.ServiceBus.Publisher.EventPublisher>();
+            services.AddTransient<IApplicationEventPublisher, EventPublisher>();
 
             services.Configure<CosmosDbConfiguration>(context.Configuration.GetSection("CosmosDb"));
             services.AddCosmosDB();

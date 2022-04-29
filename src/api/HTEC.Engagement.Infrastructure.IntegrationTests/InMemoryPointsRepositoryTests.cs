@@ -42,7 +42,6 @@ namespace HTEC.Engagement.Infrastructure.IntegrationTests
             Assert.NotNull(dbItem);
             Assert.Equal(dbItem.Id, points.Id);
             Assert.Equal(dbItem.Name, points.Name);
-            Assert.Equal(dbItem.TenantId, points.TenantId);
             Assert.Equal(dbItem.Description, points.Description);
             Assert.Equal(dbItem.Enabled, points.Enabled);
             Assert.Equal(dbItem.Balance, points.Balance);

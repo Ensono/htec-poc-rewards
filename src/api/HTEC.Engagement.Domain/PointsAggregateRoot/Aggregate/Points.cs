@@ -7,19 +7,16 @@ namespace HTEC.Engagement.Domain
 {
     public class Points : AggregateRoot<Guid>
     {
-        public Points(Guid id, string name, Guid tenantId, string description, bool enabled, int balance)
+        public Points(Guid id, string name, string description, bool enabled, int balance)
         {
             Id = id;
             Name = name;
-            TenantId = tenantId;
             Description = description;
             Enabled = enabled;
             Balance = balance;
         }
 
         public string Name { get; private set; }
-
-        public Guid TenantId { get; private set; }
 
         public string Description { get; private set; }
 

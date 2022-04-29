@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Amido.Stacks.Application.CQRS.Commands;
+using System;
 
 namespace HTEC.Engagement.CQRS.Commands
 {
-    public class RedeemPoints : IPointsCommand
+    public class RedeemPoints : ICommand
     {
         public int OperationCode => (int)Common.Operations.OperationCode.RedeemPoints;
 

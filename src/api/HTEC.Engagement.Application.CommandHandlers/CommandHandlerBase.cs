@@ -18,12 +18,12 @@ namespace HTEC.Engagement.Application.CommandHandlers
     /// </summary>
     /// <typeparam name="TCommand">The type of command being handled</typeparam>
     /// <typeparam name="TResult">The type of result expected. Use bool when no return value is expected</typeparam>
-    public abstract class PointsCommandHandlerBase<TCommand, TResult> : ICommandHandler<TCommand, TResult> where TCommand : IPointsCommand
+    public abstract class CommandHandlerBase<TCommand, TResult> : ICommandHandler<TCommand, TResult> where TCommand : IPointsCommand
     {
         protected IPointsRepository repository;
         private readonly IApplicationEventPublisher applicationEventPublisher;
 
-        public PointsCommandHandlerBase(IPointsRepository repository, IApplicationEventPublisher applicationEventPublisher)
+        public CommandHandlerBase(IPointsRepository repository, IApplicationEventPublisher applicationEventPublisher)
         {
             this.repository = repository;
             this.applicationEventPublisher = applicationEventPublisher;

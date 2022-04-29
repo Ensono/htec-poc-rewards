@@ -44,7 +44,6 @@ namespace HTEC.Engagement.API.Controllers
             var id = await commandHandler.HandleAsync(
                 new CreatePoints(
                         correlationId: GetCorrelationId(),
-                        tenantId: body.TenantId, //Should check if user logged-in owns it
                         name: body.Name,
                         description: body.Description,
                         enabled: body.Enabled,

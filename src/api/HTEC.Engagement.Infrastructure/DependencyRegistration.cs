@@ -41,9 +41,8 @@ namespace HTEC.Engagement.Infrastructure
         {
             services.AddSecrets();
 
-            services.AddTransient<IssuePointsCommandHandler>()
-                .Configure<ServiceBusSenderConfiguration>(context.Configuration.GetSection("ServiceBusSender"))
-                .AddServiceBus();
+            services.Configure<ServiceBusConfiguration>(context.Configuration.GetSection("ServiceBusConfiguration"));
+            services.AddServiceBus();
             services.AddTransient<IApplicationEventPublisher, EventPublisher>();
 
             services.Configure<CosmosDbConfiguration>(context.Configuration.GetSection("CosmosDb"));

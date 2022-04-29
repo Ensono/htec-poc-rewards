@@ -3,7 +3,7 @@
 # To build it, a function name needs to be passed in as an argument to the build.
 # For example:
 #
-# docker build -t stacks-dotnet-cqrs-events --build-arg function=HTEC.Engagement.Listener .\src\functions
+# docker build -t stacks-dotnet-cqrs-events --build-arg function=Htec.Poc.Listener .\src\functions
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
 

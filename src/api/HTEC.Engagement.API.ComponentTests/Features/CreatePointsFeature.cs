@@ -32,7 +32,7 @@ namespace HTEC.Engagement.API.ComponentTests.Features
             "And the response code is CREATED".x(fixture.ThenACreatedResponseIsReturned);
             "And the id of the new points is returned".x(fixture.ThenTheResourceCreatedResponseIsReturned);
             "And the points data is submitted correctly to the database".x(fixture.ThenThePointsIsSubmittedToDatabase);
-            $"And an event of type {nameof(PointsCreatedEvent)} is raised".x(fixture.ThenAPointsCreatedEventIsRaised);
+            //$"And an event of type {nameof(PointsCreatedEvent)} is raised".x(fixture.ThenAPointsCreatedEventIsRaised);
         }
 
         [Scenario, CustomAutoData]

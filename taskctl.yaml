@@ -27,6 +27,18 @@ pipelines:
       depends_on:
         - lint
 
+  build:container:api:
+    - task: build:container
+      variables:
+        - buildargs: src/api
+        - imagename: $env:DOCKER_IMAGE_NAME
+
+  build:container:bg_worker:
+    - task: build:container    
+      variables:
+        - buildargs: $env:DOCKER_IMAGE_ARGS_BG_WORKER
+        - imagename: $env:DOCKER_IMAGE_NAME_BG_WORKER    
+
   # Pipeline to perform the build of the project
   build:
     - task: build:functional_tests

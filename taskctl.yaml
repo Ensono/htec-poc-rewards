@@ -51,12 +51,12 @@ pipelines:
         - buildargs: $env:DOCKER_IMAGE_ARGS_ASB_LISTENER
         - imagename: $env:DOCKER_IMAGE_NAME_ASB_LISTENER
 
-  build:container:listener_aeh:
+  build:container:cosmosdb_worker:
     - task: build:container
       name: 
       variables:
-        - buildargs: $env:DOCKER_IMAGE_ARGS_AEH_LISTENER
-        - imagename: $env:DOCKER_IMAGE_NAME_AEH_LISTENER        
+        - buildargs: $env:DOCKER_IMAGE_ARGS_COSMOSDB_WORKER
+        - imagename: $env:DOCKER_IMAGE_NAME_COSMOSDB_WORKER
 
   # Pipeline to perform the build of the project
   build:

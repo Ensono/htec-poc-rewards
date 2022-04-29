@@ -69,8 +69,6 @@ stages:
                 taskctl build:container:api
                 taskctl build:container:bg_worker
                 taskctl build:container:worker
-                taskctl build:container:listener_asb
-                taskctl build:container:cosmosdb_worker
             env:
               # Azure
               ARM_TENANT_ID: "$(azure-tenant-id)"

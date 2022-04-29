@@ -29,6 +29,7 @@ stages:
           - template: templates/air-api-setup.yml
             parameters:
               TaskctlVersion: ${{ variables.TaskctlVersion }}
+              StacksEnvfileVersion: ${{ variables.StacksEnvfileVersion }}
 
           - task: Bash@3
             displayName: "TaskCTL: Setup"

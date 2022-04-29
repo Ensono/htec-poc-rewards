@@ -53,6 +53,13 @@ stages:
               PROJECT_NAME: $(sonar_project_name)
               BUILD_BUILDNUMBER: $(version_number)
 
+          # Upload envfile for debugging
+          - task: PublishPipelineArtifact@1
+            displayName: "Upload: envfile"
+            inputs:
+              path: ./envfile
+              artifact: debug
+
           - task: Bash@3
             displayName: "TaskCTL: Build"
             inputs:

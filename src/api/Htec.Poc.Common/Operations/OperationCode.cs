@@ -7,6 +7,7 @@ public enum OperationCode
     UpdateReward = 102,
     DeleteReward = 103,
     GetRewardById = 104,
+    CalculateReward = 105,
     SearchReward = 110,
 
     // Categories Operations

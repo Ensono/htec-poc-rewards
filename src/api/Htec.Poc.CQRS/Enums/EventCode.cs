@@ -6,6 +6,7 @@ public enum EventCode
     RewardCreated = 101,
     RewardUpdated = 102,
     RewardDeleted = 103,
+    RewardCalculated = 104,
 
     // Categories Operations
     CategoryCreated = 201,

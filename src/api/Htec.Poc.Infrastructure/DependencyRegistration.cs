@@ -48,7 +48,8 @@ public static class DependencyRegistration
             services.Configure<Amido.Stacks.Data.Documents.CosmosDB.CosmosDbConfiguration>(context.Configuration.GetSection("CosmosDb"));
             services.AddCosmosDB();
             services.AddTransient<IRewardRepository, CosmosDbRewardRepository>();
-        var healthChecks = services.AddHealthChecks();
+
+            var healthChecks = services.AddHealthChecks();
             healthChecks.AddCheck<CustomHealthCheck>("Sample"); //This is a sample health check, remove if not needed, more info: https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/monitor-app-health
             healthChecks.AddCheck<Amido.Stacks.Data.Documents.CosmosDB.CosmosDbDocumentStorage<Reward>>("CosmosDB");
     }

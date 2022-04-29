@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using Amido.Stacks.Application.CQRS.Commands;
 
 namespace Htec.Poc.CQRS.Commands;
 
-public class CreateReward : ICommand
+public class CalculateReward : ICommand
 {
-    public int OperationCode => (int)Common.Operations.OperationCode.CreateReward;
+    public int OperationCode => (int)Common.Operations.OperationCode.CalculateReward;
 
     public Guid CorrelationId { get; }
 
@@ -17,7 +17,7 @@ public class CreateReward : ICommand
 
     public bool Enabled { get; set; }
 
-    public CreateReward(Guid correlationId, Guid tenantId, string name, string description, bool enabled)
+    public CalculateReward(Guid correlationId, Guid tenantId, string name, string description, bool enabled)
     {
         CorrelationId = correlationId;
         TenantId = tenantId;

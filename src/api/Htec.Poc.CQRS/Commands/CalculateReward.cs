@@ -9,20 +9,12 @@ public class CalculateReward : ICommand
 
     public Guid CorrelationId { get; }
 
-    public Guid TenantId { get; set; }
+    public Guid MemberId { get; set; }
 
-    public string Name { get; set; }
 
-    public string Description { get; set; }
-
-    public bool Enabled { get; set; }
-
-    public CalculateReward(Guid correlationId, Guid tenantId, string name, string description, bool enabled)
+    public CalculateReward(Guid correlationId, Guid memberId)
     {
         CorrelationId = correlationId;
-        TenantId = tenantId;
-        Name = name;
-        Description = description;
-        Enabled = enabled;
+        MemberId = memberId;
     }
 }

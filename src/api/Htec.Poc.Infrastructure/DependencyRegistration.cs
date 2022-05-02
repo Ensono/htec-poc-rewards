@@ -16,6 +16,7 @@ using Htec.Poc.Infrastructure.HealthChecks;
 using Amido.Stacks.DynamoDB.Extensions;
 using Amazon.DynamoDBv2;
 using Htec.Poc.Infrastructure.Repositories;
+using Htec.Poc.Infrastructure.Rules;
 
 namespace Htec.Poc.Infrastructure;
 
@@ -41,17 +42,19 @@ public static class DependencyRegistration
     {
         services.AddSecrets();
 
-            services.Configure<Amido.Stacks.Messaging.Azure.ServiceBus.Configuration.ServiceBusConfiguration>(context.Configuration.GetSection("ServiceBusConfiguration"));
-            services.AddServiceBus();
-            services.AddTransient<IApplicationEventPublisher, Amido.Stacks.Messaging.Azure.ServiceBus.Senders.Publishers.EventPublisher>();
+        services.Configure<Amido.Stacks.Messaging.Azure.ServiceBus.Configuration.ServiceBusConfiguration>(context.Configuration.GetSection("ServiceBusConfiguration"));
+        services.AddServiceBus();
+        services.AddTransient<IApplicationEventPublisher, Amido.Stacks.Messaging.Azure.ServiceBus.Senders.Publishers.EventPublisher>();
 
-            services.Configure<Amido.Stacks.Data.Documents.CosmosDB.CosmosDbConfiguration>(context.Configuration.GetSection("CosmosDb"));
-            services.AddCosmosDB();
-            services.AddTransient<IRewardRepository, CosmosDbRewardRepository>();
+        services.Configure<Amido.Stacks.Data.Documents.CosmosDB.CosmosDbConfiguration>(context.Configuration.GetSection("CosmosDb"));
+        services.AddCosmosDB();
+        services.AddTransient<IRewardRepository, CosmosDbRewardRepository>();
 
-            var healthChecks = services.AddHealthChecks();
-            healthChecks.AddCheck<CustomHealthCheck>("Sample"); //This is a sample health check, remove if not needed, more info: https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/monitor-app-health
-            healthChecks.AddCheck<Amido.Stacks.Data.Documents.CosmosDB.CosmosDbDocumentStorage<Reward>>("CosmosDB");
+        var healthChecks = services.AddHealthChecks();
+        healthChecks.AddCheck<CustomHealthCheck>("Sample"); //This is a sample health check, remove if not needed, more info: https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/monitor-app-health
+        healthChecks.AddCheck<Amido.Stacks.Data.Documents.CosmosDB.CosmosDbDocumentStorage<Reward>>("CosmosDB");
+
+        services.AddSingleton<IRulesEngine, RulesEngine>();
     }
 
     private static void AddCommandHandlers(IServiceCollection services)

@@ -39,6 +39,13 @@ public class CalculateRewardController : ApiControllerBase
     [ProducesResponseType(typeof(Reward), 200)]
     public async Task<IActionResult> CalculateReward([Required][FromBody] CalculateRewardRequest body)
     {
+        var id = await commandHandler.HandleAsync(
+            new CalculateReward(
+                correlationId: GetCorrelationId(),
+                memberId: body.MemberId
+            )
+        );
+
         var reward = new Reward();
         return new ObjectResult(reward);
     }

@@ -76,19 +76,6 @@ public class RewardTests
     }
 
     [Fact]
-    public void Categories_Should_ReturnList()
-    {
-        // Arrange
-        // Act
-        // Assert
-        typeof(Reward)
-            .Properties()
-            .First(x => x.Name == "Categories")
-            .Should()
-            .Return<List<Category>>();
-    }
-
-    [Fact]
     public void Enabled_Should_BeDecoratedWith_RequiredAttribute()
     {
         // Arrange

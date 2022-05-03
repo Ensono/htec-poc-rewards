@@ -15,7 +15,7 @@ namespace Htec.Poc.API.Controllers;
 /// </summary>
 [Consumes("application/json")]
 [Produces("application/json")]
-[ApiExplorerSettings(GroupName = "Reward")]
+[ApiExplorerSettings(GroupName = "Reward", IgnoreApi = true)]
 [ApiController]
 public class CreateRewardController : ApiControllerBase
 {

@@ -45,7 +45,6 @@ public class InMemoryRewardRepositoryTests
         Assert.Equal(dbItem.TenantId, reward.TenantId);
         Assert.Equal(dbItem.Description, reward.Description);
         Assert.Equal(dbItem.Enabled, reward.Enabled);
-        Assert.Equal(dbItem.Categories, reward.Categories);
     }
 
     /// <summary>

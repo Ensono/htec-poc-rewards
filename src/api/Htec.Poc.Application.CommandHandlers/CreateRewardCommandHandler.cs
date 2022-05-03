@@ -24,19 +24,11 @@ public class CreateRewardCommandHandler : ICommandHandler<CreateReward, Guid>
     {
         var id = Guid.NewGuid();
 
-        // TODO: Check if the user owns the resource before any operation
-        // if(command.User.TenantId != reward.TenantId)
-        // {
-        //     throw NotAuthorizedException()
-        // }
-
-
         var newReward = new Reward(
             id: id,
             name: command.Name,
             tenantId: command.TenantId,
             description: command.Description,
-            categories: null,
             enabled: command.Enabled
         );
 

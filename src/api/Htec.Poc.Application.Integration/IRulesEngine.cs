@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using Htec.Poc.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace Htec.Poc.Application.Integration;
 
 public interface IRulesEngine
 {
-    Task<bool> CalculateReward();
+    Task<int> CalculateReward(Basket basket);
 
 }

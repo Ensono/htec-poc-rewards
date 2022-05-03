@@ -8,18 +8,20 @@ namespace Htec.Poc.Application.CQRS.Events;
 public class RewardCalculatedEvent : IApplicationEvent
 {
     [JsonConstructor]
-    public RewardCalculatedEvent(int operationCode, Guid correlationId, Guid rewardId)
+    public RewardCalculatedEvent(int operationCode, Guid correlationId, Guid memberId, int points)
     {
         OperationCode = operationCode;
         CorrelationId = correlationId;
-        RewardId = rewardId;
+        MemberId = memberId;
+        Points = points;
     }
 
-    public RewardCalculatedEvent(IOperationContext context, Guid rewardId)
+    public RewardCalculatedEvent(IOperationContext context, Guid rewardId, int points)
     {
         OperationCode = context.OperationCode;
         CorrelationId = context.CorrelationId;
-        RewardId = rewardId;
+        MemberId = rewardId;
+        Points = points;
     }
 
     public int EventCode => (int)Enums.EventCode.RewardCalculated;
@@ -28,5 +30,7 @@ public class RewardCalculatedEvent : IApplicationEvent
 
     public Guid CorrelationId { get; }
 
-    public Guid RewardId { get; }
+    public Guid MemberId { get; }
+
+    public int Points { get; }
 }

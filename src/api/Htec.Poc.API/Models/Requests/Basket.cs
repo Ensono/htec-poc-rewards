@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Htec.Poc.API.Models.Requests;
 
@@ -12,4 +14,9 @@ public class Basket
     /// </summary>
     [Required]
     public BasketItem[] Items { get; set;}
+
+    public CQRS.Commands.Models.Basket ToEntity()
+    {
+        return new CQRS.Commands.Models.Basket(this.Items?.Select(BasketItem.ToEntity).ToList());
+    }
 }

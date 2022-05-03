@@ -2,16 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2.DocumentModel;
 using Amido.Stacks.Domain;
 using Htec.Poc.Domain.Entities;
 using Htec.Poc.Domain.Events;
 using Htec.Poc.Domain.RewardAggregateRoot.Exceptions;
-using Amido.Stacks.Domain.Events;
-using Amido.Stacks.DynamoDB.Converters;
-using Htec.Poc.Domain.Converters;
 
 namespace Htec.Poc.Domain;
 

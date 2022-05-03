@@ -5,11 +5,12 @@ using Amido.Stacks.Application.CQRS.Commands;
 using Htec.Poc.Application.CQRS.Events;
 using Htec.Poc.Application.Integration;
 using Htec.Poc.CQRS.Commands;
+using Htec.Poc.CQRS.Commands.Models;
 using Htec.Poc.Domain;
 
 namespace Htec.Poc.Application.CommandHandlers;
 
-public class CalculateRewardCommandHandler : ICommandHandler<CalculateReward, Guid>
+public class CalculateRewardCommandHandler : ICommandHandler<CalculateReward, CalculateRewardResult>
 {
     private readonly IApplicationEventPublisher applicationEventPublisher;
     private readonly IRulesEngine rulesEngine;
@@ -20,18 +21,12 @@ public class CalculateRewardCommandHandler : ICommandHandler<CalculateReward, Gu
         this.rulesEngine = rulesEngine;
     }
 
-    public async Task<Guid> HandleAsync(CalculateReward command)
+    public async Task<CalculateRewardResult> HandleAsync(CalculateReward command)
     {
-        var id = Guid.NewGuid();
+        var points = await rulesEngine.CalculateReward(command.Basket.ToEntity());
+ 
+        //await applicationEventPublisher.PublishAsync(new RewardCalculatedEvent(command, command.MemberId, points));
 
-        // TODO: CALCULATE REWARD
-        if (!await rulesEngine.CalculateReward())
-        {
-            throw new Exception();
-        }
-
-        await applicationEventPublisher.PublishAsync(new RewardCalculatedEvent(command, id));
-
-        return id;
+        return new CalculateRewardResult(command.MemberId, points);
     }
 }

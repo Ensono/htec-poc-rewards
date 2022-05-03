@@ -1,5 +1,6 @@
 ﻿using System;
 using Amido.Stacks.Application.CQRS.Commands;
+using Htec.Poc.CQRS.Commands.Models;
 
 namespace Htec.Poc.CQRS.Commands;
 
@@ -11,10 +12,12 @@ public class CalculateReward : ICommand
 
     public Guid MemberId { get; set; }
 
+    public Basket Basket { get; set; }
 
-    public CalculateReward(Guid correlationId, Guid memberId)
+    public CalculateReward(Guid correlationId, Guid memberId, Basket basket)
     {
         CorrelationId = correlationId;
         MemberId = memberId;
+        Basket = basket;
     }
 }

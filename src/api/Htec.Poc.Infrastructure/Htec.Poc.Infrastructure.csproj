@@ -8,7 +8,6 @@
   <ItemGroup>
     <PackageReference Include="Amido.Stacks.Data.Documents.CosmosDB" Version="0.2.50" />
     <PackageReference Include="Amido.Stacks.Messaging.AWS.SQS" Version="0.2.20" />
-    <PackageReference Include="Amido.Stacks.Messaging.Azure.ServiceBus" Version="0.3.11" />
     <PackageReference Include="Amido.Stacks.Messaging.Azure.EventHub" Version="0.2.6-preview-master" />
     <PackageReference Include="Amido.Stacks.DependencyInjection" Version="0.2.19" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
@@ -22,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\stacks\stacks-dotnet-packages-messaging-asb\src\Amido.Stacks.Messaging.Azure.ServiceBus\Amido.Stacks.Messaging.Azure.ServiceBus.csproj" />
     <ProjectReference Include="..\Htec.Poc.Application.CommandHandlers\Htec.Poc.Application.CommandHandlers.csproj" />
     <ProjectReference Include="..\Htec.Poc.Application.Integration\Htec.Poc.Application.Integration.csproj" />
     <ProjectReference Include="..\Htec.Poc.Application.QueryHandlers\Htec.Poc.Application.QueryHandlers.csproj" />

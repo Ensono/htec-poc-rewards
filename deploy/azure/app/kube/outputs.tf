@@ -81,19 +81,19 @@ output "servicebus_subscription_filtered_id" {
 
 # Events - Function
 output "function_publisher_id" {
-  value = module.servicebus.*.function_publisher_id[0]
+  value = contains(split(",", var.app_bus_type), "servicebus") ? module.servicebus.*.function_publisher_id[0] : ""
 }
 
 output "function_listener_id" {
-  value = module.servicebus.*.function_listener_id[0]
+  value = contains(split(",", var.app_bus_type), "servicebus") ? module.servicebus.*.function_listener_id[0] : ""
 }
 
 output "function_publisher_name" {
-  value = module.servicebus.*.function_publisher_name[0]
+  value = contains(split(",", var.app_bus_type), "servicebus") ? module.servicebus.*.function_publisher_name[0] : ""
 }
 
 output "function_listener_name" {
-  value = module.servicebus.*.function_listener_name[0]
+  value = contains(split(",", var.app_bus_type), "servicebus") ? module.servicebus.*.function_listener_name[0] : ""
 }
 
 output "eventhub_connectionstring" {

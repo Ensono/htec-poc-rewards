@@ -68,7 +68,7 @@ variables:
   - name: k8s_app_route
     value: /api/rewards
   - name: app_bus_type
-    value:
+    value: servicebus
 
   # Function Naming
   - name: docker_image_name_bg_worker

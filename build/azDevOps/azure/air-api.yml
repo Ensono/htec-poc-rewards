@@ -6,7 +6,7 @@ pr:
 trigger:
   branches:
     include:
-      - 'master'
+      - '*'
   paths:
     include:
       - '*'
@@ -53,11 +53,20 @@ stages:
               PROJECT_NAME: $(sonar_project_name)
               BUILD_BUILDNUMBER: $(version_number)
 
+          # Upload envfile for debugging
+          - task: PublishPipelineArtifact@1
+            displayName: "Upload: envfile"
+            inputs:
+              path: ./envfile
+              artifact: debug
+
           - task: Bash@3
             displayName: "TaskCTL: Build"
             inputs:
               targetType: inline
-              script: taskctl build
+              script: |
+                taskctl build:functional_tests
+                taskctl build:container:api
             env:
               # Azure
               ARM_TENANT_ID: "$(azure-tenant-id)"
@@ -71,8 +80,8 @@ stages:
               DOCKER_IMAGE_ARGS_WORKER: $(docker_image_args_worker)
               DOCKER_IMAGE_NAME_ASB_LISTENER: $(docker_image_name_asb_listener)
               DOCKER_IMAGE_ARGS_ASB_LISTENER: $(docker_image_args_asb_listener)
-              DOCKER_IMAGE_NAME_AEH_LISTENER: $(docker_image_name_aeh_listener)
-              DOCKER_IMAGE_ARGS_AEH_LISTENER: $(docker_image_args_aeh_listener)
+              DOCKER_IMAGE_NAME_COSMOSDB_WORKER: $(docker_image_name_cosmosdb_worker)
+              DOCKER_IMAGE_ARGS_COSMOSDB_WORKER: $(docker_image_args_cosmosdb_worker)
               DOCKER_CONTAINER_REGISTRY_NAME: $(docker_container_registry_name_nonprod).azurecr.io
               REGISTRY_RESOURCE_GROUP: $(docker_container_registry_rg_name_nonprod)
 
@@ -249,39 +258,6 @@ stages:
                   inputs:
                     path: $(Agent.BuildDirectory)/s/$(k8s_resource_file)
                     artifact: manifests_dev
-
-                # TODO: This functionality in general should be run via AIR, but there are limitations in CLI tooling.
-                - template: templates/legacy-deploy-functions.yml
-                  parameters:
-                    condition: contains('${{ variables.app_bus_type }}', 'servicebus')
-                    azureSubscription: ${{ variables.azure_service_connection}}
-                    container_registry_name: $(docker_container_registry_name_nonprod)
-                    function_image_name: $(docker_image_name_asb_listener)
-                    function_image_tag: $(docker_image_tag)
-                    function_name: func-asb-listener-nwhujo # TODO: This name is constructed in TF but we currently have no way of reading the output into the pipeline
-                    function_resource_group: amido-stacks-dev-euw-netcore-api-cqrs-evnts # TODO: This name is constructed in TF but we currently have no way of reading the output into the pipeline
-
-                - template: templates/legacy-deploy-functions.yml
-                  parameters:
-                    condition: contains('${{ variables.app_bus_type }}', 'eventhub')
-                    azureSubscription: ${{ variables.azure_service_connection}}
-                    container_registry_name: $(docker_container_registry_name_nonprod)
-                    function_image_name: $(docker_image_name_aeh_listener)
-                    function_image_tag: $(docker_image_tag)
-                    function_name: func-aeh-listener-lngrjm # TODO: This name is constructed in TF but we currently have no way of reading the output into the pipeline
-                    function_resource_group: amido-stacks-dev-euw-netcore-api-cqrs-evnts # TODO: This name is constructed in TF but we currently have no way of reading the output into the pipeline
-
-                - template: templates/legacy-deploy-functions.yml
-                  parameters:
-                    azureSubscription: ${{ variables.azure_service_connection}}
-                    container_registry_name: $(docker_container_registry_name_nonprod)
-                    function_image_name: $(docker_image_name_worker)
-                    function_image_tag: $(docker_image_tag)
-                    function_name: function-publisher-nwhujo # TODO: This name is constructed in TF but we currently have no way of reading the output into the pipeline
-                    function_resource_group: amido-stacks-dev-euw-netcore-api-cqrs-evnts # TODO: This name is constructed in TF but we currently have no way of reading the output into the pipeline
-
-
-
 
   - stage: Prod
     dependsOn: Build

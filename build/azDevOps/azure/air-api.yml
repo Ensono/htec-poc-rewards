@@ -6,7 +6,7 @@ pr:
 trigger:
   branches:
     include:
-      - 'master'
+      - '*'
   paths:
     include:
       - '*'

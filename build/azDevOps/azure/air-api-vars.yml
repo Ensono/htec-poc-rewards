@@ -16,7 +16,7 @@ variables:
   - name: tf_state_container
     value: tfstate
   - name: tf_state_key
-    value: $(self-generic-name)
+    value: $(self_generic_name)
 
   # TF File location in Repo
   - name: TF_FILE_LOCATION
@@ -44,7 +44,7 @@ variables:
 
   # App Specific Taxonomy
   - name: resource_def_name
-    value: $(self-generic-name)
+    value: $(self_generic_name)
   - name: component
     value: api
   - name: role
@@ -54,19 +54,21 @@ variables:
   - name: self_generic_name
     value: $(company)-$(domain)
   - name: app_name
-    value:  $(self-generic-name)
+    value: $(self_generic_name)
+  - name: app_worker_name
+    value: api
   - name: region
     value: westeurope
   - name: company
     value: htec
   - name: project
-    value: htec-poc-rewards
+    value: exxon-poc-rewards
   - name: domain
     value: rewards
   - name: k8s_app_route
     value: /api/rewards
   - name: app_bus_type
-    value: servicebus,eventhub
+    value:
 
   # Function Naming
   - name: docker_image_name_bg_worker
@@ -128,9 +130,9 @@ variables:
   - name: k8s_cluster_identifier_nonprod
     value: htec-exxon-nonprod-euw-core
   - name: k8s_cluster_target_prod
-    value:
+    value: htec-exxon-prod-euw-core
   - name: k8s_cluster_identifier_prod
-    value:
+    value: htec-exxon-prod-euw-core
 
   # Kubernetes target file location
   - name: k8s_resource_file

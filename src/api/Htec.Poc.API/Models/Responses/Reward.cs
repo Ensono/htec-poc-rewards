@@ -23,11 +23,6 @@ public class Reward
     public string Description { get; private set; }
 
     /// <summary>
-    /// Represents the categories contained in the reward
-    /// </summary>
-    public List<Category> Categories { get; private set; }
-
-    /// <summary>
     /// Represents the status of the reward. False if disabled
     /// </summary>
     [Required]
@@ -40,7 +35,6 @@ public class Reward
             Id = reward.Id,
             Name = reward.Name,
             Description = reward.Description,
-            Categories = reward.Categories?.Select(Category.FromQuery).ToList(),
             Enabled = reward.Enabled
         };
     }

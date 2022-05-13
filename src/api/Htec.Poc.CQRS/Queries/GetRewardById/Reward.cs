@@ -18,9 +18,6 @@ public class Reward
     public string Description { get; set; }
 
     [Required]
-    public List<Category> Categories { get; set; }
-
-    [Required]
     public bool? Enabled { get; set; }
 
     public static Reward FromDomain(Domain.Reward reward)
@@ -31,8 +28,7 @@ public class Reward
             TenantId = reward.TenantId,
             Name = reward.Name,
             Description = reward.Description,
-            Enabled = reward.Enabled,
-            Categories = reward.Categories?.Select(Category.FromEntity).ToList()
+            Enabled = reward.Enabled
         };
     }
 }

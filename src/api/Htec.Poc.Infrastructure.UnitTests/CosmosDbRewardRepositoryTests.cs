@@ -77,7 +77,7 @@ public class CosmosDbRewardRepositoryTests
     private IDocumentStorage<Reward> SetupFakeRewardRepository()
     {
         var rewardRepository = Substitute.For<IDocumentStorage<Domain.Reward>>();
-        reward = new Reward(Guid.Empty, "testName", Guid.Empty, "testDescription", true, new List<Category>());
+        reward = new Reward(Guid.Empty, "testName", Guid.Empty, "testDescription", true);
         var fakeTypeResponse = new OperationResult<Reward>(true, reward, new Dictionary<string, string>());
         var fakeNonTypeResponse = new OperationResult(true, new Dictionary<string, string>());
 

@@ -2,6 +2,7 @@
 using Htec.Poc.API.Models.Requests;
 using Htec.Poc.API.Models.Responses;
 using Htec.Poc.CQRS.Commands;
+using Htec.Poc.CQRS.Commands.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,9 +20,9 @@ namespace Htec.Poc.API.Controllers;
 [ApiController]
 public class CalculateRewardController : ApiControllerBase
 {
-    readonly ICommandHandler<CalculateReward, Guid> commandHandler;
+    readonly ICommandHandler<CalculateReward, CalculateRewardResult> commandHandler;
 
-    public CalculateRewardController(ICommandHandler<CalculateReward, Guid> commandHandler)
+    public CalculateRewardController(ICommandHandler<CalculateReward, CalculateRewardResult> commandHandler)
     {
         this.commandHandler = commandHandler ?? throw new ArgumentNullException(nameof(commandHandler));
     }
@@ -31,15 +32,24 @@ public class CalculateRewardController : ApiControllerBase
     /// </summary>
     /// <remarks>Calculate a reward</remarks>
     /// <param name="body">Reward being calculated</param>
-    /// <response code="200">Reward</response>
+    /// <response code="200">CalculateRewardResponse</response>
     /// <response code="400">Bad Request</response>
     /// <response code="404">Resource not found</response>
     [HttpPost("/v1/reward/calculate")]
     [Authorize]
-    [ProducesResponseType(typeof(Reward), 200)]
+    [ProducesResponseType(typeof(CalculateRewardResponse), 200)]
     public async Task<IActionResult> CalculateReward([Required][FromBody] CalculateRewardRequest body)
     {
-        var reward = new Reward();
-        return new ObjectResult(reward);
+        var calculateRewardResult = await commandHandler.HandleAsync(
+            new CalculateReward(
+                correlationId: GetCorrelationId(),
+                memberId: body.MemberId,
+                basket: body.Basket.ToEntity()
+            )
+        );
+
+        var response = CalculateRewardResponse.FromResult(calculateRewardResult);
+
+        return new ObjectResult(response);
     }
 }

@@ -16,7 +16,6 @@ using Htec.Poc.Common.Exceptions;
 using Htec.Poc.CQRS.Commands;
 using Htec.Poc.CQRS.Queries.GetRewardById;
 using Htec.Poc.CQRS.Queries.SearchReward;
-using Htec.Poc.Domain.RewardAggregateRoot.Exceptions;
 using Query = Htec.Poc.CQRS.Queries;
 
 namespace Htec.Poc.CQRS.UnitTests;
@@ -60,33 +59,6 @@ public class HandlerTests
         await rewardRepo.Received(1).SaveAsync(Arg.Any<Domain.Reward>());
         await eventPublisher.Received(1).PublishAsync(Arg.Any<IApplicationEvent>());
 
-        result.ShouldBeOfType<Guid>();
-    }
-
-    [Theory, AutoData]
-    public async void CreateCategoryCommandHandler_HandleAsync(Domain.Reward reward, CreateCategory command)
-    {
-        // Arrange
-        var handler = new CreateCategoryCommandHandler(rewardRepo, eventPublisher);
-
-        // Act
-        var result = await handler.HandleCommandAsync(reward, command);
-
-        // Assert
-        result.ShouldBeOfType<Guid>();
-    }
-
-    [Theory, AutoData]
-    public async void CreateRewardItemCommandHandler_HandleAsync(Domain.Reward reward, CreateRewardItem command)
-    {
-        // Arrange
-        var handler = new CreateRewardItemCommandHandler(rewardRepo, eventPublisher);
-        command.CategoryId = reward.Categories[0].Id;
-
-        // Act
-        var result = await handler.HandleCommandAsync(reward, command);
-
-        // Assert
         result.ShouldBeOfType<Guid>();
     }
 
@@ -158,61 +130,6 @@ public class HandlerTests
         // Assert
         result.ShouldBeOfType<bool>();
         result.ShouldBe(true);
-    }
-
-    [Theory, AutoData]
-    public async void UpdateCategoryCommandHandler_HandleAsync(Domain.Reward reward, UpdateCategory command)
-    {
-        // Arrange
-        var handler = new UpdateCategoryCommandHandler(rewardRepo, eventPublisher);
-        command.CategoryId = reward.Categories[0].Id;
-
-        // Act
-        var result = await handler.HandleCommandAsync(reward, command);
-
-        // Assert
-        result.ShouldBeOfType<bool>();
-        result.ShouldBe(true);
-    }
-
-    [Theory, AutoData]
-    public async void UpdateRewardItemCommandHandler_HandleAsync(Domain.Reward reward, UpdateRewardItem command)
-    {
-        // Arrange
-        var handler = new UpdateRewardItemCommandHandler(rewardRepo, eventPublisher);
-        command.CategoryId = reward.Categories[0].Id;
-        command.RewardItemId = reward.Categories[0].Items[0].Id;
-
-
-        // Act
-        var result = await handler.HandleCommandAsync(reward, command);
-
-        // Assert
-        result.ShouldBeOfType<bool>();
-        result.ShouldBe(true);
-    }
-
-    [Theory, AutoData]
-    public async void UpdateCategoryCommandHandler_HandleAsync_NoCategory_ShouldThrow(Domain.Reward reward, UpdateCategory command)
-    {
-        // Arrange
-        var handler = new UpdateCategoryCommandHandler(rewardRepo, eventPublisher);
-
-        // Act
-        // Assert
-        await Should.ThrowAsync<CategoryDoesNotExistException>(async () => await handler.HandleCommandAsync(reward, command));
-    }
-
-    [Theory, AutoData]
-    public async void UpdateRewardItemCommandHandler_HandleAsync_NoRewardItem_ShouldThrow(Domain.Reward reward, UpdateRewardItem command)
-    {
-        // Arrange
-        var handler = new UpdateRewardItemCommandHandler(rewardRepo, eventPublisher);
-        command.CategoryId = reward.Categories[0].Id;
-
-        // Act
-        // Assert
-        await Should.ThrowAsync<RewardItemDoesNotExistException>(async () => await handler.HandleCommandAsync(reward, command));
     }
 
     #endregion

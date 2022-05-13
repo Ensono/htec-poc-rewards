@@ -51,7 +51,7 @@ public class RewardApiProviderTests
     }
 
     //If there are additional consumers, add extra inline data with the consumer name
-    [Theory]
+    [Theory(Skip = "true")]
     [InlineData("GenericRewardConsumer")]
     //[InlineData("OtherConsumer")]
     public void EnsureProviderApiHonoursPactWithConsumer(string consumerName)

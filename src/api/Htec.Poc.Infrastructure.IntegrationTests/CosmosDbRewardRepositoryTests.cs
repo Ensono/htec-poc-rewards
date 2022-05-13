@@ -63,14 +63,6 @@ public class CosmosDbRewardRepositoryTests
         Assert.Equal(dbItem.TenantId, reward.TenantId);
         Assert.Equal(dbItem.Description, reward.Description);
         Assert.Equal(dbItem.Enabled, reward.Enabled);
-        Assert.All(reward.Categories, c =>
-            dbItem.Categories.Any(d =>
-                c.Id == d.Id &&
-                c.Name == d.Name &&
-                c.Description == d.Description &&
-                c.Items == d.Items
-            )
-        );
     }
 
     /// <summary>

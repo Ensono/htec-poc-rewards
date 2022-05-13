@@ -90,7 +90,7 @@ type: Opaque
 stringData:
   cosmos_key: ${cosmosdb_key}
   app_insights: ${app_insights_key}
-  servicebus_connectionstring: ${servicebus_connectionstring}
+  servicebus_connectionstring: dummy
 
 ---
 

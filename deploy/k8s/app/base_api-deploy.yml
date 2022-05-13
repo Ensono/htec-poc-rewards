@@ -152,19 +152,6 @@ data:
           "Item B from congig",
           "Item C from config"
         ]
-      },
-      "ServiceBusConfiguration": {
-        "Sender": {
-          "Topics": [
-            {
-              "Name": "${servicebus_topic_name}",
-              "ConnectionStringSecret": {
-                  "Identifier": "SERVICEBUS_CONNECTIONSTRING",
-                  "Source": "Environment"
-              }
-            }
-          ]
-        }
       }
     }
 
@@ -205,23 +192,6 @@ data:
           "WithThreadId"
         ],
         "Destructure": []
-      },
-      "ServiceBusConfiguration": {
-        "Listener": {
-          "Topics": [
-            {
-              "Name": "${servicebus_topic_name}",
-              "SubscriptionName": "${servicebus_subscription_name}",
-              "ConcurrencyLevel": 5,
-              "DisableProcessing": false,
-              "ConnectionStringSecret": {
-                "Identifier": "SERVICEBUS_CONNECTIONSTRING",
-                "Source": "Environment"
-              },
-              "DisableMessageValidation": true
-            }
-          ]
-        }
       }
     }
 
@@ -319,11 +289,6 @@ spec:
                 secretKeyRef:
                   name: appsecrets
                   key: app_insights
-            - name: SERVICEBUS_CONNECTIONSTRING
-              valueFrom:
-                secretKeyRef:
-                  name: appsecrets
-                  key: servicebus_connectionstring
           resources:
             limits:
               cpu: "1"
